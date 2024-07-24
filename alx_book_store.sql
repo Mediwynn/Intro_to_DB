@@ -1,5 +1,11 @@
 import mysql.connector
 
+-- Create database
+CREATE DATABASE IF NOT EXISTS alx_book_store;
+
+-- Use the created database
+USE alx_book_store;
+
 -- Create Authors table
 CREATE TABLE IF NOT EXISTS Authors (
     author_id INT AUTO_INCREMENT PRIMARY KEY,
