@@ -47,12 +47,9 @@ CREATE TABLE IF NOT EXISTS Order_Details (
 );
 
 -- Check if the Books table exists
-SET @table_exists = (
-    SELECT COUNT(*)
-    FROM information_schema.tables
-    WHERE table_schema = 'alx_book_store'
-    AND table_name = 'Books'
-);
+SELECT COUNT(*) INTO @table_exists
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_SCHEMA = 'alx_book_store' AND TABLE_NAME = 'Books';
 
 -- Retrieve and display the structure of the Books table if it exists
 IF @table_exists > 0 THEN
@@ -62,9 +59,9 @@ IF @table_exists > 0 THEN
         IS_NULLABLE AS 'Is Nullable',
         COLUMN_DEFAULT AS 'Default Value',
         EXTRA AS 'Extra Info'
-    FROM information_schema.columns
-    WHERE table_schema = 'alx_book_store'
-    AND table_name = 'Books';
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_SCHEMA = 'alx_book_store'
+    AND TABLE_NAME = 'Books';
 ELSE
     SELECT 'The table Books does not exist.' AS Message;
 END IF;
