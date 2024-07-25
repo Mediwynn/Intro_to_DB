@@ -20,8 +20,8 @@ CREATE TABLE IF NOT EXISTS Books (
     FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
--- Create the Customers table
-CREATE TABLE IF NOT EXISTS Customers (
+-- Create the customer table
+CREATE TABLE IF NOT EXISTS customer (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(215) NOT NULL,
     email VARCHAR(215) NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS Orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT,
     order_date DATE,
-    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
 );
 
 -- Create the Order_Details table
@@ -66,6 +66,6 @@ ELSE
     SELECT 'The table Books does not exist.' AS Message;
 END IF;
 
--- Insert a single row into the Customers table
-INSERT INTO Customers (customer_id, customer_name, email, address)
+-- Insert a single row into the customer table
+INSERT INTO customer (customer_id, customer_name, email, address)
 VALUES (1, 'Cole Baidoo', 'cbaidoo@sandtech.com', '123 Happiness Ave.');
