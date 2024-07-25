@@ -54,9 +54,17 @@ SET @table_exists = (
     AND table_name = 'Books'
 );
 
--- Describe the Books table if it exists
+-- Retrieve and display the structure of the Books table if it exists
 IF @table_exists > 0 THEN
-    DESCRIBE Books;
+    SELECT 
+        COLUMN_NAME AS 'Column Name',
+        COLUMN_TYPE AS 'Column Type',
+        IS_NULLABLE AS 'Is Nullable',
+        COLUMN_DEFAULT AS 'Default Value',
+        EXTRA AS 'Extra Info'
+    FROM information_schema.columns
+    WHERE table_schema = 'alx_book_store'
+    AND table_name = 'Books';
 ELSE
     SELECT 'The table Books does not exist.' AS Message;
 END IF;
