@@ -14,16 +14,9 @@ try:
     cnx = mysql.connector.connect(**config)
     cursor = cnx.cursor()
 
-    # Check if database exists
-    cursor.execute("SHOW DATABASES LIKE 'alx_book_store'")
-    result = cursor.fetchone()
-
-    if result:
-        print("Database 'alx_book_store' already exists.")
-    else:
-        # Creating the database
-        cursor.execute("CREATE DATABASE alx_book_store")
-        print("Database 'alx_book_store' created successfully!")
+    # Creating the database if it does not exist
+    cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
+    print("Database 'alx_book_store' created successfully or already exists.")
 
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
