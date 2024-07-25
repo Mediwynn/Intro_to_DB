@@ -4,10 +4,10 @@ from mysql.connector import errorcode
 
 # Check if the database name is provided as a command-line argument
 if len(sys.argv) != 2:
-    print("Usage: python list_tables.py <database_name>")
+    print("Usage: python list_tables.py <alx_book_store>")
     sys.exit(1)
 
-database_name = sys.argv[1]
+alx_book_store = sys.argv[1]
 
 # Database connection parameters
 config = {
@@ -23,24 +23,24 @@ try:
     cursor = cnx.cursor()
 
     # Selecting the database
-    cursor.execute(f"USE {database_name}")
+    cursor.execute(f"USE {alx_book_store}")
 
     # Retrieving the list of tables
     cursor.execute("SHOW TABLES")
     tables = cursor.fetchall()
 
     if tables:
-        print(f"Tables in the '{database_name}' database:")
+        print(f"Tables in the '{alx_book_store}' database:")
         for table in tables:
             print(table[0])
     else:
-        print(f"No tables found in the '{database_name}' database.")
+        print(f"No tables found in the '{alx_book_store}' database.")
 
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
     elif err.errno == errorcode.ER_BAD_DB_ERROR:
-        print(f"Database '{database_name}' does not exist")
+        print(f"Database '{alx_book_store}' does not exist")
     else:
         print(err)
 
